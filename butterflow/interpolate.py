@@ -37,7 +37,7 @@ def sw_interpolate_flow(prev_fr, next_fr, fu, fv, bu, bv, int_each_go):
     time_steps = time_steps_for_nfrs(int_each_go)
     cpus = multiprocessing.cpu_count()
     pool = multiprocessing.Pool(cpus, init_worker)
-    work_steps = cpus/2
+    work_steps = max(1, cpus/2)
     try:
         for i in range(0, len(time_steps), work_steps):
             def blend_results(*args):
